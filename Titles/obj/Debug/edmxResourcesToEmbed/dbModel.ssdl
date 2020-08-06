@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="pubsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="authors">
+    <Key>
+      <PropertyRef Name="au_id" />
+    </Key>
+    <Property Name="au_id" Type="varchar" MaxLength="11" Nullable="false" />
+    <Property Name="au_lname" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="au_fname" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="phone" Type="char" MaxLength="12" Nullable="false" />
+    <Property Name="address" Type="varchar" MaxLength="40" />
+    <Property Name="city" Type="varchar" MaxLength="20" />
+    <Property Name="state" Type="char" MaxLength="2" />
+    <Property Name="zip" Type="char" MaxLength="5" />
+    <Property Name="contract" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="employee">
+    <Key>
+      <PropertyRef Name="emp_id" />
+    </Key>
+    <Property Name="emp_id" Type="char" MaxLength="9" Nullable="false" />
+    <Property Name="fname" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="minit" Type="char" MaxLength="1" />
+    <Property Name="lname" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="job_id" Type="smallint" Nullable="false" />
+    <Property Name="job_lvl" Type="tinyint" />
+    <Property Name="pub_id" Type="char" MaxLength="4" Nullable="false" />
+    <Property Name="hire_date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="titleauthor">
+    <Key>
+      <PropertyRef Name="au_id" />
+      <PropertyRef Name="title_id" />
+    </Key>
+    <Property Name="au_id" Type="varchar" MaxLength="11" Nullable="false" />
+    <Property Name="title_id" Type="varchar" MaxLength="6" Nullable="false" />
+    <Property Name="au_ord" Type="tinyint" />
+    <Property Name="royaltyper" Type="int" />
+  </EntityType>
+  <EntityType Name="titles">
+    <Key>
+      <PropertyRef Name="title_id" />
+    </Key>
+    <Property Name="title_id" Type="varchar" MaxLength="6" Nullable="false" />
+    <Property Name="title" Type="varchar" MaxLength="80" Nullable="false" />
+    <Property Name="type" Type="char" MaxLength="12" Nullable="false" />
+    <Property Name="pub_id" Type="char" MaxLength="4" />
+    <Property Name="price" Type="money" />
+    <Property Name="advance" Type="money" />
+    <Property Name="royalty" Type="int" />
+    <Property Name="ytd_sales" Type="int" />
+    <Property Name="notes" Type="varchar" MaxLength="200" />
+    <Property Name="pubdate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__titleauth__au_id__1DE57479">
+    <End Role="authors" Type="Self.authors" Multiplicity="1" />
+    <End Role="titleauthor" Type="Self.titleauthor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="authors">
+        <PropertyRef Name="au_id" />
+      </Principal>
+      <Dependent Role="titleauthor">
+        <PropertyRef Name="au_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__titleauth__title__1ED998B2">
+    <End Role="titles" Type="Self.titles" Multiplicity="1" />
+    <End Role="titleauthor" Type="Self.titleauthor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="titles">
+        <PropertyRef Name="title_id" />
+      </Principal>
+      <Dependent Role="titleauthor">
+        <PropertyRef Name="title_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="pubsModelStoreContainer">
+    <EntitySet Name="authors" EntityType="Self.authors" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="employee" EntityType="Self.employee" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="titleauthor" EntityType="Self.titleauthor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="titles" EntityType="Self.titles" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__titleauth__au_id__1DE57479" Association="Self.FK__titleauth__au_id__1DE57479">
+      <End Role="authors" EntitySet="authors" />
+      <End Role="titleauthor" EntitySet="titleauthor" />
+    </AssociationSet>
+    <AssociationSet Name="FK__titleauth__title__1ED998B2" Association="Self.FK__titleauth__title__1ED998B2">
+      <End Role="titles" EntitySet="titles" />
+      <End Role="titleauthor" EntitySet="titleauthor" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

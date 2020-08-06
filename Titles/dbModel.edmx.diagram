@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0a5462dd2ab04ff0a7773d6380109081" Name="Diagram1">
+        <EntityTypeShape EntityType="pubsModel.author" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="pubsModel.employee" Width="1.5" PointX="5.875" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="pubsModel.titleauthor" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="pubsModel.title" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
+        <AssociationConnector Association="pubsModel.FK__titleauth__au_id__1DE57479" ManuallyRouted="false" />
+        <AssociationConnector Association="pubsModel.FK__titleauth__title__1ED998B2" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
